@@ -13,6 +13,22 @@ body {
     transform: translate(-50%,-50%);
     text-align: center;
 
+    .circle-progress {
+        position: relative;
+
+        .actual-time {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            text-shadow: 0 0 33px rgba(0,0,0,0.3);
+        
+            .actual-time__timer {
+                font-size: 40px;
+                letter-spacing: 5px;
+            }
+        }
+    }
     .saved-time {
         list-style-type: none;
         height: 300px;
@@ -40,7 +56,7 @@ body {
 
             &:hover {
                 cursor: pointer;
-                background: rgba(97,217,250,1);
+                background: rgba(62, 152, 199,1);
             }
         }
       
@@ -77,7 +93,7 @@ body {
     
                 &::before {
                     font-size: 35px;
-                    color: #61d9fa;
+                    color: rgba(62, 152, 199,1);
                     margin: 0;
                 } 
                 &:hover {
@@ -89,12 +105,5 @@ body {
 }
 
 
-.actual-time {
-    text-shadow: 0 0 33px rgba(0,0,0,0.3);
 
-    .actual-time__timer {
-        font-size: 40px;
-        letter-spacing: 5px;
-    }
-}
 

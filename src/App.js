@@ -5,6 +5,8 @@ import './font/flaticon.css';
 import TimeSaved from './TimeSaved';
 import StoperMenu from './StoperMenu';
 import ShowTime from './ShowTime';
+import CircularProgressbar from 'react-circular-progressbar';
+import 'react-circular-progressbar/dist/styles.css';
 
 class App extends Component {
   state = {
@@ -22,6 +24,7 @@ class App extends Component {
     textSavedTimes: [],
   }
 
+  colorRGB = "rgba(62, 152, 199,1)"
 
   static defaultProps = {
     stopWatchStartText: "00:00:00",
@@ -73,6 +76,16 @@ class App extends Component {
     let stoperTimeMinutes = Math.floor(((newTime - this.state.startTime) / (1000 * 60)) % 60);
     stoperTimeMinutes = stoperTimeMinutes < 10 ? `0${stoperTimeMinutes}` : stoperTimeMinutes;
 
+    const oldMinute = parseInt(this.state.stoperTimeMinutes);
+    const currentMinute = parseInt(stoperTimeMinutes);
+    console.log(oldMinute, currentMinute);
+    if (currentMinute !== oldMinute) {
+      const colorR = Math.floor(Math.random() * 256);
+      const colorG = Math.floor(Math.random() * 256);
+      const colorB = Math.floor(Math.random() * 256);
+
+      this.colorRGB = `rgba(${colorR},${colorG},${colorB},1)`
+    }
     this.setState({
       stoperTimeMiliSeconds: stoperTimeMiliSeconds,
       stoperTimeSeconds: stoperTimeSeconds,
@@ -133,13 +146,27 @@ class App extends Component {
       textSavedTimes: [],
     });
   }
+
+
   render() {
     const savedTimesShow = this.state.textSavedTimes.map((time, index) => <TimeSaved key={index} number={index + 1} time={time} />)
+
+    const percentage = this.state.stoperTimeSeconds * 1.67;
+
     return (
       <React.Fragment>
 
         <div className="stopwatch">
-          <ShowTime text={this.state.textTime} />
+
+          .
+          <div className="circle-progress">
+            <CircularProgressbar percentage={percentage} styles={{
+              path: { stroke: this.colorRGB }
+            }} />
+            <ShowTime text={this.state.textTime} />
+          </div>
+
+
 
           <ul className="saved-time" id="times" >
             {savedTimesShow}
@@ -151,6 +178,7 @@ class App extends Component {
             text={this.state.textStartBtn}
             isStopped={this.state.stopped}
           />
+
         </div>
 
       </React.Fragment>
