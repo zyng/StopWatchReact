@@ -150,7 +150,7 @@ class App extends Component {
 
     const savedTimesShow = textSavedTimes.map((time, index) => <TimeSaved key={index} number={index + 1} time={time} />)
     const percentage = stoperTimeSeconds * 1.67;
-
+    console.log(this.colorRGB);
     return (
       <React.Fragment>
 
@@ -169,6 +169,7 @@ class App extends Component {
             saveClick={this.handleSaveTime}
             isStopped={stopped}
             isRun={startTime}
+            color={this.colorRGB}
           />
         </div>
       </React.Fragment>
