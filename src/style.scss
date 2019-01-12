@@ -1,8 +1,11 @@
+@import "_mixins"; 
+
+
 body {
     background-color:#292c33;
     color: #ffffff;
-    height: 100vh;
-    width: 100vw;
+    max-height: 100vh;
+    max-width: 100vw;
     overflow: hidden;
     font-family: 'Sarabun', sans-serif;
 }
@@ -16,6 +19,11 @@ body {
     .stopwatch__circle-progress {
         position: relative;
 
+        @include mQ(768px) {
+            width: 200px;
+            margin: 0 auto;
+        }
+
         .stopwatch__actual-time-container {
             position: absolute; 
             top: 50%;
@@ -26,6 +34,10 @@ body {
             .stopwatch__actual-time {
                 font-size: 40px;
                 letter-spacing: 5px;
+
+                @include mQ(768px) {
+                    font-size: 30px;
+                }
             }
         }
     }
@@ -39,6 +51,12 @@ body {
         padding: 0 20px 55px 10px;
         margin-top: 60px;
       
+        @include mQ(768px) {
+            height: 200px;
+            margin-top: 30px;
+            padding-bottom: 35px;
+        }
+
         &::-webkit-scrollbar {
             padding: 0;
             margin: 0;
