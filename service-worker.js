@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/StopWatchReact/precache-manifest.d9ca09d0334be40d8ad706cbba475d3e.js"
+  "/StopWatchReact/precache-manifest.753b0cdce68e5fb921a2c5c9cc68dbc8.js"
 );
 
 workbox.clientsClaim();
