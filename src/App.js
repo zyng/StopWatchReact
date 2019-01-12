@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import './css/animate.css';
-import './style.css';
+import './css/style.css';
 import './font/flaticon.css';
-import TimeSaved from './TimeSaved';
-import StoperMenu from './StoperMenu';
-import ShowTime from './ShowTime';
+import TimeSaved from './components/TimeSaved';
+import StoperMenu from './components/StoperMenu';
+import ShowTime from './components/ShowTime';
 import CircularProgressbar from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 
@@ -19,12 +19,12 @@ class App extends Component {
     timeDifferenceResumeAndStop: 0,
     resumeTime: 0,
     stopped: true,
-    measureTime: '',
     textTime: this.props.stopWatchStartText,
     textSavedTimes: [],
   }
 
-  colorRGB = "rgba(62, 152, 199,1)"
+  colorRGB = "rgba(62, 152, 199,1)";
+  measureTime = "";
 
   static defaultProps = {
     stopWatchStartText: "00:00:00",
@@ -48,7 +48,7 @@ class App extends Component {
     }
 
     if (isStopped) {
-      this.handleStopStoper(this.state.measureTime);
+      this.handleStopStoper(this.measureTime);
     } else {
       const resumeTime = new Date().getTime();
       const timeDifferenceResumeAndStop = (startTime === resumeTime) ? 0 : (resumeTime - this.state.stopTime);
@@ -56,16 +56,15 @@ class App extends Component {
       this.setState((prevState) => ({
         resumeTime: resumeTime,
         timeDifferenceResumeAndStop: timeDifferenceResumeAndStop,
-        textStartBtn: "Pauza",
         timeDifference: prevState.timeDifference + timeDifferenceResumeAndStop,
-        measureTime: setInterval(this.handleStartStoper, 10)
       }));
+      this.measureTime = setInterval(this.handleStartStoper, 10)
     }
   }
+
   handleStartStoper = () => {
 
     const newTime = new Date().getTime() - this.state.timeDifference;
-
 
     let stoperTimeMiliSeconds = Math.floor(((newTime - this.state.startTime) % 1000) / 10);
     stoperTimeMiliSeconds = stoperTimeMiliSeconds < 10 ? `0${stoperTimeMiliSeconds}` : stoperTimeMiliSeconds;
@@ -78,7 +77,7 @@ class App extends Component {
 
     const oldMinute = parseInt(this.state.stoperTimeMinutes);
     const currentMinute = parseInt(stoperTimeMinutes);
-    console.log(oldMinute, currentMinute);
+
     if (currentMinute !== oldMinute) {
       const colorR = Math.floor(Math.random() * 256);
       const colorG = Math.floor(Math.random() * 256);
@@ -110,26 +109,17 @@ class App extends Component {
       textSavedTimes,
     });
 
-
     this.goDownWithList();
   }
-
-  // ComponentWillUpdate = () => {
-  //   this.goDownWithList();
-  // }
-  // ComponentDidMount = () => {
-  //   this.goDownWithList();
-  // }
 
   goDownWithList = () => {
     const savedTimesBox = document.getElementById('times');
     const savedTimeBoxHeight = savedTimesBox.scrollHeight;
     savedTimesBox.scrollTop = savedTimeBoxHeight;
-
   }
 
   handleReset = () => {
-    this.handleStopStoper(this.state.measureTime);
+    this.handleStopStoper(this.measureTime);
 
     this.setState({
       startTime: 0,
@@ -141,46 +131,46 @@ class App extends Component {
       timeDifferenceResumeAndStop: 0,
       resumeTime: 0,
       stopped: true,
-      measureTime: '',
       textTime: this.props.stopWatchStartText,
       textSavedTimes: [],
     });
+
+    this.measureTime = '';
+    this.colorRGB = "rgba(62, 152, 199,1)"
   }
 
 
   render() {
-    const savedTimesShow = this.state.textSavedTimes.map((time, index) => <TimeSaved key={index} number={index + 1} time={time} />)
+    const { textSavedTimes,
+      stoperTimeSeconds,
+      startTime,
+      textTime,
+      stopped,
+    } = this.state;
 
-    const percentage = this.state.stoperTimeSeconds * 1.67;
+    const savedTimesShow = textSavedTimes.map((time, index) => <TimeSaved key={index} number={index + 1} time={time} />)
+    const percentage = stoperTimeSeconds * 1.67;
 
     return (
       <React.Fragment>
 
         <div className="stopwatch">
-
-          .
-          <div className="circle-progress">
-            <CircularProgressbar percentage={percentage} styles={{
-              path: { stroke: this.colorRGB }
-            }} />
-            <ShowTime text={this.state.textTime} />
+          <div className="stopwatch__circle-progress">
+            <CircularProgressbar percentage={percentage} styles={{ path: { stroke: this.colorRGB } }} />
+            <ShowTime text={textTime} />
           </div>
 
-
-
-          <ul className="saved-time" id="times" >
+          <ul className="stopwatch__saved-time" id="times" >
             {savedTimesShow}
           </ul>
 
           <StoperMenu stoperClick={this.handleStoper}
             resetClick={this.handleReset}
             saveClick={this.handleSaveTime}
-            text={this.state.textStartBtn}
-            isStopped={this.state.stopped}
+            isStopped={stopped}
+            isRun={startTime}
           />
-
         </div>
-
       </React.Fragment>
     );
   }
