@@ -1,4 +1,6 @@
 import React from 'react';
+import '../css/animate-fadeIn.css';
+
 
 const TimeSaved = ({ time, number }) => {
     return (

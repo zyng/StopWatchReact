@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './css/animate.css';
+import styled from 'styled-components';
 import './css/style.css';
 import './font/flaticon.css';
 import TimeSaved from './components/TimeSaved';
@@ -7,7 +7,7 @@ import StoperMenu from './components/StoperMenu';
 import ShowTime from './components/ShowTime';
 import CircularProgressbar from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
-import styled from 'styled-components';
+
 
 
 const Ulstyled = styled.ul`
