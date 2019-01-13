@@ -16,7 +16,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "scssgo": "sass --watch src/style.scss:src/style.css",
+    "scssgo": "sass --watch src/style.scss:src/css/style.css",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build"
   },
