@@ -17,7 +17,7 @@ body {
     transform: translate(-50%,-50%);
     text-align: center;
 
-    &__circle-progress {
+    #{$self}__circle-progress {
         position: relative;
 
         @include mQ(768px) {
@@ -33,7 +33,7 @@ body {
             transform: translate(-50%,-50%);
             text-shadow: 0 0 33px rgba(0,0,0,0.3);
 
-            #{$self}__actual-time {
+            #{ $self }__actual-time {
                 font-size: 40px;
                 letter-spacing: 5px;
 
@@ -42,7 +42,7 @@ body {
                 }
             }
     }
-    &__saved-time {
+    .stopwatch__saved-time {
         list-style-type: none;
         height: 300px;
         overflow-y: auto;
@@ -83,7 +83,7 @@ body {
             @include mQ(768px) {
                 font-size: 14px
             }
-            #{$self}__saved-time--text {
+            .stopwatch__saved-time--text {
                 margin-right: 5px;
             }
             i::before {
@@ -92,14 +92,14 @@ body {
             }
         }
     }
-    &__menu {
+    .stopwatch__menu {
         background-color: #ffffff;
         border-radius: 30px;
         padding: 7px 20px;
         display: inline-block;
         box-shadow: 0px 0px 33px 0px rgba(0,0,0,0.75);
 
-        #{$self}__button {
+        .stopwatch__button {
             background-color: transparent;
             border: none;
             outline: none;

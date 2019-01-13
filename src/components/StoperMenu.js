@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 const Icon = styled.i`
 &:before {
-    color: ${props => props.color} !important;  
+    color: ${props => props.color} !important;
 }
 `;
 
@@ -17,6 +17,7 @@ const StoperMenu = ({ isStopped, resetClick, stoperClick, saveClick, isRun, colo
                 <button className="stopwatch__button" onClick={stoperClick}><Icon color={color} className={changeIconClass} /></button>
                 <button className="stopwatch__button" onClick={saveClick} disabled={isStopped}><Icon color={color} className="flaticon-stopwatch" /> </button>
             </div>
+
 
         </React.Fragment>
     )

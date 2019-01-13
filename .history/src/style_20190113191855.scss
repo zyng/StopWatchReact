@@ -99,7 +99,7 @@ body {
         display: inline-block;
         box-shadow: 0px 0px 33px 0px rgba(0,0,0,0.75);
 
-        #{$self}__button {
+        .stopwatch__button {
             background-color: transparent;
             border: none;
             outline: none;
