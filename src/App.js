@@ -7,6 +7,16 @@ import StoperMenu from './components/StoperMenu';
 import ShowTime from './components/ShowTime';
 import CircularProgressbar from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
+import styled from 'styled-components';
+
+
+const Ulstyled = styled.ul`
+  &::-webkit-scrollbar-thumb {
+    &:hover {
+        background: ${props => props.color};
+    }
+  }
+`;
 
 class App extends Component {
   state = {
@@ -160,9 +170,9 @@ class App extends Component {
             <ShowTime text={textTime} />
           </div>
 
-          <ul className="stopwatch__saved-time" id="times" >
+          <Ulstyled color={this.colorRGB} className="stopwatch__saved-time" id="times" >
             {savedTimesShow}
-          </ul>
+          </Ulstyled>
 
           <StoperMenu stoperClick={this.handleStoper}
             resetClick={this.handleReset}
