@@ -8,8 +8,6 @@ import ShowTime from './components/ShowTime';
 import CircularProgressbar from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 
-
-
 const Ulstyled = styled.ul`
   &::-webkit-scrollbar-thumb {
     &:hover {
@@ -160,7 +158,6 @@ class App extends Component {
 
     const savedTimesShow = textSavedTimes.map((time, index) => <TimeSaved key={index} number={index + 1} time={time} />)
     const percentage = stoperTimeSeconds * 1.67;
-    console.log(this.colorRGB);
     return (
       <React.Fragment>
 
